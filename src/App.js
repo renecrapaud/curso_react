@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Contador extends Component{
+  constructor (props) {
+    super(props)
+    this.state = {contador : this.props.contadorInicial}
+    setInterval(()=> {
+      this.setState({contador : this.state.contador + 1})
+    },1000)
+  }
+
+  render(){
+    // const contador = 0
+    return <ContadorNum numero={this.state.contador}/>
+  }
+}
+
+Contador.defaultProps = {
+  contadorInicial : 0
+}
+class ContadorNum extends Component {
+    render(){
+      return <span>{this.props.numero}</span>
+    }
+}
+
+class App extends Component {
+  render(){
+    return (
+      <div className="App">
+        <p>Componente con estado</p>
+        <Contador contadorInicial={50} />
+      </div>
+    );
+  }
 }
 
 export default App;
