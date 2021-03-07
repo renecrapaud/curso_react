@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SeccionCondicional from './secciones/condicional.js'
 
 class Contador extends Component{
   constructor (props) {
@@ -30,6 +31,7 @@ class App extends Component {
       <div className="App">
         <p>Componente con estado</p>
         <Contador contadorInicial={50} />
+        <SeccionCondicional/>
       </div>
     );
   }
