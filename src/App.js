@@ -39,10 +39,30 @@ class CarItem extends Component{
 }
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {mouseX: 0, mouseY:0}
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+  }
+  handleClick (e){
+    console.log(e)
+    console.log(e.nativeEvent)
+    alert("Evento activado")
+  }
+
+  handleMouseMove(e){
+    const {clientX, clientY} = e
+    this.setState({mouseX: clientX, mouseY: clientY})
+  }
   render(){
     const numbers = [1,1,3,4,5]
     return (
       <div className="App">
+        <h4>Eventos</h4>
+        <button onClick={this.handleClick}>activa evento Click</button>
+        <div onMouseMove={this.handleMouseMove} style={{border: '1px solid', marginTop: 10, padding: 10}}>
+          <p>{this.state.mouseX},{this.state.mouseY}</p>
+        </div>
         <p>Componente con estado</p>
         <Contador contadorInicial={50} />
         <SeccionCondicional/>
